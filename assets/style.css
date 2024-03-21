@@ -1,4 +1,4 @@
-.containerPlayer{
+.containerPlayer {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -6,152 +6,152 @@
 }
 
 html {
-    margin: 0px;
-    overflow-x: hidden;
-  }
+  margin: 0px;
+  overflow-x: hidden;
+}
 
-  body {
-    margin: 0px;
-  }
+body {
+  margin: 0px;
+}
 
-  a {
-    text-decoration: none;
-    cursor: pointer;
-  }
+a {
+  text-decoration: none;
+  cursor: pointer;
+}
 
-  .drops {
-    align-items: center;
-    background-color: #541084;
-    display: flex;
-    flex-direction: column;
-    height: 58rem;
-    position: relative;
-    width: 100vw;
-    background-image: url(Vector.svg);
-    background-repeat: no-repeat;
+.drops {
+  align-items: center;
+  background-color: #541084;
+  display: flex;
+  flex-direction: column;
+  height: 58rem;
+  position: relative;
+  width: 100vw;
+  background-image: url(Vector.svg);
+  background-repeat: no-repeat;
 
-  }
+}
 
-  .sectionTitle {
-    text-align: center;
-    font-family: "Rubik", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: 500;
-    font-style: normal;
-    font-size: 3rem;
+.sectionTitle {
+  text-align: center;
+  font-family: "Rubik", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+  font-size: 3rem;
 
-    color: #FFFFFF;
-    text-transform: uppercase;
-    opacity: 1;
-    margin: 0px;
-    margin-top: 65px;
+  color: #FFFFFF;
+  text-transform: uppercase;
+  opacity: 1;
+  margin: 0px;
+  margin-top: 65px;
 
-  }
+}
 
-  .lineTitle {
-    width: 60px;
-    height: 7px;
-    background-color: white;
-    margin: 20px 0px 80px 0px;
+.lineTitle {
+  width: 60px;
+  height: 7px;
+  background-color: white;
+  margin: 20px 0px 80px 0px;
 
-  }
+}
 
-  .containerPostDrops {
-    display: flex;
-    flex-direction: row;
-    gap: 80px;
-  }
+.containerPostDrops {
+  display: flex;
+  flex-direction: row;
+  gap: 80px;
+}
 
-  .postDrops {
-    display: flex;
-    border: 1px solid #fff;
-    border-radius: 12px;
-    -webkit-border-radius: 12px;
-    -moz-border-radius: 12px;
-    -ms-border-radius: 12px;
-    -o-border-radius: 12px;
-    box-shadow: 0 4px 8px 0 #0003, 0 6px 20px 0 #00000030;
-    display: flex;
-    flex-direction: column;
-    height: auto;
-    width: 40rem;
-    transition: background-color .3s ease;
-    color: white;
+.postDrops {
+  display: flex;
+  border: 1px solid #fff;
+  border-radius: 12px;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  -ms-border-radius: 12px;
+  -o-border-radius: 12px;
+  box-shadow: 0 4px 8px 0 #0003, 0 6px 20px 0 #00000030;
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  width: 40rem;
+  transition: background-color .3s ease;
+  color: white;
 
-  }
+}
 
-  .postDrops:hover {
-    background-color: white;
-    color: #541084;
+.postDrops:hover {
+  background-color: white;
+  color: #541084;
 
 
-  }
+}
 
-  .postDrops img {
-    border-radius: 10px;
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
-    -ms-border-radius: 10px;
-    -o-border-radius: 10px;
-    height: 21rem;
-    object-fit: cover;
-    width: 100%;
-    transition: filter .3s linear;
-  }
+.postDrops img {
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  height: 21rem;
+  object-fit: cover;
+  width: 100%;
+  transition: filter .3s linear;
+}
 
-  .postDrops img:hover {
-    filter: contrast(130%);
-  }
+.postDrops img:hover {
+  filter: contrast(130%);
+}
 
-  .postDrops h2 {
-    align-items: center;
+.postDrops h2 {
+  align-items: center;
 
-    display: flex;
-    font-family: "Rubik", sans-serif;
-    font-size: 25px;
-    font-weight: medium;
-    letter-spacing: -.4px;
-    line-height: normal;
-    margin-bottom: 0 !important;
-    margin-top: 0 !important;
-    padding-block: 2rem;
-    padding-inline: 0;
-    padding-inline: 2rem;
-    text-align: center;
-    transition: background-color .3s ease;
-  }
+  display: flex;
+  font-family: "Rubik", sans-serif;
+  font-size: 25px;
+  font-weight: medium;
+  letter-spacing: -.4px;
+  line-height: normal;
+  margin-bottom: 0 !important;
+  margin-top: 0 !important;
+  padding-block: 2rem;
+  padding-inline: 0;
+  padding-inline: 2rem;
+  text-align: center;
+  transition: background-color .3s ease;
+}
 
-  .postDrops h2:hover {
-    color: #541084;
+.postDrops h2:hover {
+  color: #541084;
 
-  }
+}
 
-  .buttonUm {
-    align-items: center;
-    border: 2px solid #fff;
-    border-radius: 15px;
-    -webkit-border-radius: 15px;
-    -moz-border-radius: 15px;
-    -ms-border-radius: 15px;
-    -o-border-radius: 15px;
-    color: #fff;
-    display: flex;
-    font-size: 24px;
-    font-weight: 500;
-    justify-content: center;
-    margin-top: 3rem;
-    padding: 10px 30px;
-    text-decoration: none;
-    transition: background-color .3s ease;
-    text-transform: uppercase;
-    font-family: "Rubik", sans-serif;
-  }
+.buttonUm {
+  align-items: center;
+  border: 2px solid #fff;
+  border-radius: 15px;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  -ms-border-radius: 15px;
+  -o-border-radius: 15px;
+  color: #fff;
+  display: flex;
+  font-size: 24px;
+  font-weight: 500;
+  justify-content: center;
+  margin-top: 3rem;
+  padding: 10px 30px;
+  text-decoration: none;
+  transition: background-color .3s ease;
+  text-transform: uppercase;
+  font-family: "Rubik", sans-serif;
+}
 
-  .buttonUm:hover {
-    background-color: white;
-    color: #541084;
-  }
-  
+.buttonUm:hover {
+  background-color: white;
+  color: #541084;
+}
+
 
 
 /* no ar */
@@ -161,7 +161,7 @@ html {
   min-height: 500px;
   background-color: #f4e72d;
   margin-top: 0px;
-
+  position: relative;
 }
 
 .noAr .sectionTitle {
@@ -186,19 +186,58 @@ html {
   padding: 24px;
   color: white;
 
+}
+
+.progress-ring {
+  position: relative;
+
+  border-radius: 50%;
+  padding: 0px;
+  margin: -50px;
+}
+
+
+
+.circleNoArProgress {
+  border: solid 15px;
+  border-radius: 50%;
+  padding: 0px;
+  color: transparent;
+  position: relative;
+  /* Adicionado para posicionar o progress-ring absolutamente */
+}
+
+
+.progress-ring__circle {
+
+  transition: 0.35s stroke-dashoffset;
+  transform: rotate(-90deg);
+  transform-origin: 50% 50%;
+  position: absolute;
+  -webkit-transition: 0.35s stroke-dashoffset;
+  -moz-transition: 0.35s stroke-dashoffset;
+  -ms-transition: 0.35s stroke-dashoffset;
+  -o-transition: 0.35s stroke-dashoffset;
 
 }
 
 .insideCircle {
-  width: 600px;
-  height: 600px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 550px;
+  height: 550px;
   background-color: white;
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
   animation-name: pulse;
-
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
 }
 
 .insideCircle img {
@@ -269,7 +308,7 @@ html {
 }
 
 
-/* PROGRAMAS */ 
+/* PROGRAMAS */
 .programas {
   align-items: center;
   background: radial-gradient(74.24% 70.04% at -20% 56.02%, #ffc00733 0, #ffc00700 100%), radial-gradient(94.87% 155.71% at 141.54% 38.18%, #352598 0, #1f1f1e 100%);

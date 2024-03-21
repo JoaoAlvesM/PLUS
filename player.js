@@ -98,135 +98,71 @@ const radios = [
     svgClass: 'catarina',
   },
 ];
+const programas = [
+  { dia: [0, 1, 2, 3, 4, 5, 6], inicio: 0, fim: 5, titulo: 'Corujão da Plus' },
+  { dia: [1, 2, 3, 4, 5], inicio: 5, fim: 6, titulo: 'Clube Plus' },
+  { dia: [1, 2, 3, 4, 5], inicio: 6, fim: 7, titulo: 'Deu B.O.' },
+  { dia: [1, 2, 3, 4, 5], inicio: 7, fim: 8, titulo: 'Ceará News' },
+  {
+    dia: [1, 2, 3, 4, 5, 6],
+    inicio: 8,
+    fim: 9,
+    titulo: 'Ao Colo de Jesus e Maria',
+  },
+  { dia: [1, 2, 3, 4, 5, 6], inicio: 9, fim: 11, titulo: 'Manhã da Plus' },
+  { dia: [1, 2, 3, 4, 5], inicio: 12, fim: 14, titulo: 'Redação da Plus' },
+  { dia: [1, 2, 3, 4, 5], inicio: 14, fim: 17, titulo: 'Tarde Plus' },
+  { dia: [1, 2, 3, 4, 5], inicio: 17, fim: 18, titulo: 'Tá Todo Mundo Plus' },
+  { dia: [1, 2, 3, 4, 5], inicio: 18, fim: 19, titulo: 'As Mais Pedidas' },
+  { dia: [1, 2, 3, 4, 5], inicio: 19, fim: 20, titulo: 'A Voz do Brasil' },
+  { dia: [1, 2, 3, 4, 5], inicio: 20, fim: 22, titulo: 'Plus Mania' },
+  { dia: [6], inicio: 12, fim: 14, titulo: 'Festa Plus' },
+  { dia: [6], inicio: 21, fim: 22, titulo: 'Time Machine' },
+  { dia: [6], inicio: 22, fim: 24, titulo: 'Upgrade' },
+  { dia: [0], inicio: 5, fim: 8, titulo: 'Playlist da Plus' },
+  { dia: [0], inicio: 20, fim: 22, titulo: 'Playlist da Plus' },
+  { dia: [0], inicio: 8, fim: 9, titulo: 'Terço da Misericórdia' },
+  { dia: [0], inicio: 10, fim: 15, titulo: 'Domingão da Plus' },
+  { dia: [0], inicio: 15, fim: 19, titulo: 'Mega Plus' },
+  { dia: [0], inicio: 19, fim: 20, titulo: 'A Grande Hora' },
+  { dia: [0], inicio: 22, fim: 24, titulo: 'Sem Limites Para Amar' },
+  {
+    dia: [1, 2, 3, 4, 5, 6],
+    inicio: 11,
+    fim: 12,
+    titulo: 'As Melhores da Plus',
+  },
+  { dia: [1, 2, 3, 4, 5], inicio: 22, fim: 24, titulo: 'Slow Motion' },
+];
 const getPrograma = () => {
   const currentDay = new Date().getDay();
   const currentHour = new Date().getHours();
-  let progTitle = '';
+  let programaAtual = null;
+  let programaAnterior = null;
+  let proximoPrograma = null;
 
-  if (
-    currentDay >= 0 &&
-    currentDay <= 6 &&
-    currentHour >= 0 &&
-    currentHour < 5
-  ) {
-    progTitle = 'Corujão da Plus';
-  } else if (
-    currentDay >= 1 &&
-    currentDay <= 5 &&
-    currentHour >= 5 &&
-    currentHour < 6
-  ) {
-    progTitle = 'Clube Plus';
-  } else if (
-    currentDay >= 1 &&
-    currentDay <= 5 &&
-    currentHour >= 6 &&
-    currentHour < 7
-  ) {
-    progTitle = 'Deu B.O.';
-  } else if (
-    currentDay >= 1 &&
-    currentDay <= 5 &&
-    currentHour >= 7 &&
-    currentHour < 8
-  ) {
-    progTitle = 'Ceará News';
-  } else if (
-    currentDay >= 1 &&
-    currentDay <= 6 &&
-    currentHour >= 8 &&
-    currentHour < 9
-  ) {
-    progTitle = 'Ao Colo de Jesus e Maria';
-  } else if (
-    currentDay >= 1 &&
-    currentDay <= 6 &&
-    currentHour >= 9 &&
-    currentHour < 11
-  ) {
-    progTitle = 'Manhã da Plus';
-  } else if (
-    currentDay >= 1 &&
-    currentDay <= 5 &&
-    currentHour >= 12 &&
-    currentHour < 14
-  ) {
-    progTitle = 'Redação da Plus';
-  } else if (
-    currentDay >= 1 &&
-    currentDay <= 5 &&
-    currentHour >= 14 &&
-    currentHour < 17
-  ) {
-    progTitle = 'Tarde Plus';
-  } else if (
-    currentDay >= 1 &&
-    currentDay <= 5 &&
-    currentHour >= 17 &&
-    currentHour < 18
-  ) {
-    progTitle = 'Tá Todo Mundo Plus';
-  } else if (
-    currentDay >= 1 &&
-    currentDay <= 5 &&
-    currentHour >= 18 &&
-    currentHour < 19
-  ) {
-    progTitle = 'As Mais Pedidas';
-  } else if (
-    currentDay >= 1 &&
-    currentDay <= 5 &&
-    currentHour >= 19 &&
-    currentHour < 20
-  ) {
-    progTitle = 'A Voz do Brasil';
-  } else if (
-    currentDay >= 1 &&
-    currentDay <= 5 &&
-    currentHour >= 20 &&
-    currentHour < 22
-  ) {
-    progTitle = 'Plus Mania';
-  } else if (currentDay === 6 && currentHour >= 12 && currentHour < 14) {
-    progTitle = 'Festa Plus';
-  } else if (currentDay === 6 && currentHour >= 21 && currentHour < 22) {
-    progTitle = 'Time Machine';
-  } else if (currentDay === 6 && currentHour >= 22 && currentHour < 24) {
-    progTitle = 'Upgrade';
-  } else if (
-    currentDay === 0 &&
-    ((currentHour >= 5 && currentHour < 8) ||
-      (currentHour >= 20 && currentHour < 22))
-  ) {
-    progTitle = 'Playlist da Plus';
-  } else if (currentDay === 0 && currentHour >= 8 && currentHour < 9) {
-    progTitle = 'Terço da Misericórdia';
-  } else if (currentDay === 0 && currentHour >= 10 && currentHour < 15) {
-    progTitle = 'Domingão da Plus';
-  } else if (currentDay === 0 && currentHour >= 15 && currentHour < 19) {
-    progTitle = 'Mega Plus';
-  } else if (currentDay === 0 && currentHour >= 19 && currentHour < 20) {
-    progTitle = 'A Grande Hora';
-  } else if (currentDay === 0 && currentHour >= 22 && currentHour < 24) {
-    progTitle = 'Sem Limites Para Amar';
-  } else if (
-    currentDay >= 1 &&
-    currentDay <= 6 &&
-    currentHour >= 11 &&
-    currentHour < 12
-  ) {
-    progTitle = 'As Melhores da Plus';
-  } else if (
-    currentDay >= 1 &&
-    currentDay <= 5 &&
-    currentHour >= 22 &&
-    currentHour < 24
-  ) {
-    progTitle = 'Slow Motion';
+  for (let i = 0; i < programas.length; i++) {
+    const programa = programas[i];
+    if (
+      programa.dia.includes(currentDay) &&
+      programa.inicio <= currentHour &&
+      programa.fim > currentHour
+    ) {
+      programaAtual = programa;
+      programaAnterior = i > 0 ? programas[i - 1] : null;
+      proximoPrograma =
+        i < programas.length - 1 ? programas[i + 1] : null;
+      break;
+    }
   }
 
-  return progTitle;
+  return {
+    atual: programaAtual,
+    anterior: programaAnterior,
+    proximo: proximoPrograma,
+  };
 };
+
 function createElement(type, props, ...children) {
   const element = document.createElement(type);
   Object.assign(element, props);
@@ -328,13 +264,14 @@ const programDisplay = createElement(
   'Nenhum programa no momento'
 );
 document.body.appendChild(programDisplay);
+
 // Função para atualizar a exibição do programa
 function updateProgramDisplay() {
   const programDisplay = document.getElementById('programDisplay');
   if (programDisplay) {
     const currentProgram = getPrograma();
-    programDisplay.textContent = currentProgram
-      ? `Programa atual: ${currentProgram}`
+    programDisplay.textContent = currentProgram.atual
+      ? `Programa atual: ${currentProgram.atual}`
       : 'Nenhum programa no momento';
   }
 }

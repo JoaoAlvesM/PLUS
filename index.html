@@ -18,7 +18,7 @@
 
 <body>
 
-    <script src="Player.js"></script>
+  <script src="Player.js"></script>
 
   <div class="slider">
 
@@ -127,30 +127,90 @@
 
   <!--PROGRAMAS-->
   <div class="noAr">
+
+
     <div class="topNoArDiv">
       <section class="topNoAr">
         <h1 class="sectionTitle">NO AR</h1>
         <section class="lineTitle"></section>
       </section>
       <img src="https://plusfm.com.br/static/media/discoMusical.93e23889809a357d1aad.png" alt="">
+
     </div>
 
 
     <div class="containerNoAr">
 
-      <div class="circleNoAr">
+      <div class="circleNoArProgress">
+        <svg class="progress-ring" width="620" height="620">\
+          <circle class="middle-circle" stroke="white" stroke-width="5" fill="transparent" r="290" cx="310" cy="310" />
+          <circle class="progress-ring__circle" stroke="rgb(84, 16, 132)" stroke-width="15" fill="transparent" r="290" cx="310"
+            cy="310" stroke-dasharray="1823" stroke-dashoffset="1823" stroke-linecap="round" />
+
+        </svg>
         <div class="insideCircle">
-          <img src="https://plusfm.com.br/static/media/tardeplus.4fc6b5d4f2b6f4a3c82751435cfb108a.svg" alt="">
+          <img src="https://plusfm.com.br/static/media/tardeplus.4fc6b5d4f2b6f4a3c82751435cfb108a.svg" alt=""
+            id="playImage">
         </div>
       </div>
+
+
       <div class="programacaoNoAr">
         <section class="noArAgora">
-
         </section>
-        <div class="buttonUm">Confira nossa promgramação</div>
+        <div class="buttonUm">Confira nossa programação</div>
+
+        <div class="buttonUm" id="previousProgram">programa anterior</div>
+        <div class="buttonUm" id="currentProgram">programa atual</div>
+        <div class="buttonUm" id="nextProgram">próximo programa</div>
       </div>
     </div>
 
+    <script>
+      window.onload = function() {
+        console.log('Página carregada');
+        document.getElementById('playImage').addEventListener('click', function() {
+          const audioElement = document.getElementById('audioElement');
+          if (audioElement.paused) {
+            audioElement.play();
+          } else {
+            audioElement.pause();
+          }
+        });
+
+        updateProgramDisplay();
+      };
+
+      function updateProgramDisplay() {
+        console.log('Atualizando a exibição do programa');
+        const currentProgramDisplay = document.getElementById('currentProgram');
+        const previousProgramDisplay = document.getElementById('previousProgram');
+        const nextProgramDisplay = document.getElementById('nextProgram');
+        const progressRing = document.querySelector('.progress-ring__circle');
+        const radius = progressRing.r.baseVal.value;
+        const circumference = radius * 2 * Math.PI;
+        progressRing.style.strokeDasharray = `${circumference} ${circumference}`;
+        progressRing.style.strokeDashoffset = `${circumference}`;
+        const programData = getPrograma();
+        console.log('Dados do programa:', programData);
+        if (programData.atual) {
+          const currentHour = new Date().getHours();
+          const currentMinute = new Date().getMinutes();
+          const totalDuration = programData.atual.fim - programData.atual.inicio;
+          const elapsedDuration = (currentHour - programData.atual.inicio) + (currentMinute / 60);
+          const elapsedPercentage = (elapsedDuration / totalDuration) * 100;
+          const offset = circumference - (elapsedPercentage / 100 * circumference);
+          progressRing.style.strokeDashoffset = offset;
+          console.log(`Programa atual: ${programData.atual.titulo}`);
+          console.log(`O programa atual termina às: ${programData.atual.fim}`);
+          console.log(`Já se passaram ${elapsedPercentage.toFixed(2)}% do programa atual`);
+          currentProgramDisplay.textContent = programData.atual ? `Programa atual: ${programData.atual.titulo}` : 'Nenhum programa no momento';
+          previousProgramDisplay.textContent = programData.anterior ? `Programa anterior: ${programData.anterior.titulo}` : 'Nenhum programa anterior';
+          nextProgramDisplay.textContent = programData.proximo ? `Próximo programa: ${programData.proximo.titulo}` : 'Nenhum próximo programa';
+        }
+      }
+      setInterval(updateProgramDisplay, 6000);
+    </script>
 
 
   </div>
@@ -219,11 +279,11 @@
     <div style=" position: relative;
       display: flex;
       justify-content: center;">
-      
-      
-      
-      <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 587.66 748.7" class="mapComponent">
+
+
+
+      <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 587.66 748.7"
+        class="mapComponent">
         <defs>
           <style>
             .cls-1 {
@@ -588,10 +648,10 @@
             var cls1Elements = document.querySelectorAll('.cls-1');
             var playingClass = null;
 
-            classes.forEach(function (cls) {
+            classes.forEach(function(cls) {
               var elements = document.querySelectorAll('.' + cls);
-              elements.forEach(function (element) {
-                element.addEventListener('click', function () {
+              elements.forEach(function(element) {
+                element.addEventListener('click', function() {
                   var className;
                   if (this.className & amp;& amp; this.className.baseVal) {
                   className = this.className.baseVal.split(' ')[0];
@@ -601,19 +661,19 @@
 
                 if (playingClass) {
                   var playingElements = document.querySelectorAll('.' + playingClass);
-                  playingElements.forEach(function (el) {
+                  playingElements.forEach(function(el) {
                     el.classList.remove('playing');
                     el.classList.remove('scaled');
                   });
                 }
 
                 var allElements = document.querySelectorAll('.scaled');
-                allElements.forEach(function (el) {
+                allElements.forEach(function(el) {
                   el.classList.remove('scaled');
                 });
 
                 if (playingClass !== className) {
-                  elements.forEach(function (el) {
+                  elements.forEach(function(el) {
                     el.classList.add('playing');
                     el.classList.add('scaled');
                     el.parentNode.appendChild(el);
@@ -623,7 +683,7 @@
                   playingClass = null;
                 }
 
-                cls1Elements.forEach(function (el) {
+                cls1Elements.forEach(function(el) {
                   var elClassName;
                   if (el.className & amp;& amp; el.className.baseVal) {
                   elClassName = el.className.baseVal.split(' ')[0];
