@@ -524,6 +524,7 @@ a {
 
 .mapComponent {
   max-width: 38vw;
+  overflow: visible;
 }
 
 

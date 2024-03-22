@@ -150,8 +150,7 @@ const getPrograma = () => {
     ) {
       programaAtual = programa;
       programaAnterior = i > 0 ? programas[i - 1] : null;
-      proximoPrograma =
-        i < programas.length - 1 ? programas[i + 1] : null;
+      proximoPrograma = i < programas.length - 1 ? programas[i + 1] : null;
       break;
     }
   }
@@ -219,25 +218,28 @@ function renderPlayer() {
     onChange: (event) => {},
   });
 
+  function handleRadioChange(event, useSvgClass = false) {
+    console.log('Radio select changed:', event.target.value);
+    const selectedRadio = radios.find(
+      (radio) =>
+        (useSvgClass ? radio.svgClass : radio.title) === event.target.value
+    );
+    if (selectedRadio) {
+      console.log('Selected radio:', selectedRadio);
+      const audioElement = document.getElementById('audioElement');
+      audioElement.src = selectedRadio.url;
+      audioElement.load();
+      PlayerContext.setIsPlaying(true);
+    } else {
+      console.log('No radio found for selection');
+    }
+  }
+
   const radioSelect = createElement(
     'select',
     {
       id: 'radioSelect',
-      oninput: (event) => {
-        console.log('Radio select changed:', event.target.value);
-        const selectedRadio = radios.find(
-          (radio) => radio.title === event.target.value
-        );
-        if (selectedRadio) {
-          console.log('Selected radio:', selectedRadio);
-          const audioElement = document.getElementById('audioElement');
-          audioElement.src = selectedRadio.url;
-          audioElement.load();
-          PlayerContext.setIsPlaying(true);
-        } else {
-          console.log('No radio found for selection');
-        }
-      },
+      oninput: (event) => handleRadioChange(event),
     },
     ...radios.map((radio) =>
       createElement(
@@ -247,6 +249,60 @@ function renderPlayer() {
       )
     )
   );
+
+  document.addEventListener('DOMContentLoaded', function () {
+    var classes = [
+      'paraipaba',
+      'crateus',
+      'catarina',
+      'iguatu',
+      'cariri',
+      'sobral',
+      'santaquiteria',
+      'cascavel',
+      'redencao',
+      'pacajus',
+      'fortaleza',
+      'aracati',
+      'playing',
+    ];
+
+    classes.forEach(function (cls) {
+      var elements = document.querySelectorAll('.' + cls);
+      elements.forEach(function (element) {
+        element.addEventListener('click', function () {
+          var className;
+          if (this.className && this.className.baseVal) {
+            className = this.className.baseVal.split(' ')[0];
+          }
+          console.log(className);
+          // Remove a classe 'playing' de todos os elementos
+          classes.forEach(function (cls) {
+            var elements = document.querySelectorAll('.' + cls);
+            elements.forEach(function (element) {
+              element.className.baseVal = element.className.baseVal.replace(
+                ' playing',
+                ''
+              );
+            });
+          });
+          // Adiciona a classe 'playing' a todos os elementos com a mesma classe do elemento clicado
+          var sameClassElements = document.querySelectorAll('.' + className);
+          sameClassElements.forEach(function (el) {
+            el.className.baseVal = className + ' playing';
+          });
+          // Adiciona a classe 'transparent' à classe 'cls-1' quando um elemento SVG é clicado
+          var cls1Elements = document.querySelectorAll('.cls-1');
+          cls1Elements.forEach(function (el) {
+            el.className.baseVal += ' transparent';
+          });
+          // Chama a função handleRadioChange com o nome da classe como o valor do seletor de rádio
+          handleRadioChange({ target: { value: className } }, true);
+          this.ownerSVGElement.appendChild(this);
+        });
+      });
+    });
+  });
 
   const playerContainer = createElement('div', {
     className: 'containerPlayer',
