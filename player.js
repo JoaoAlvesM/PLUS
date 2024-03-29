@@ -327,7 +327,7 @@ function updateProgramDisplay() {
   if (programDisplay) {
     const currentProgram = getPrograma();
     programDisplay.textContent = currentProgram.atual
-      ? `Programa atual: ${currentProgram.atual}`
+      ? `Programa atual: ${currentProgram.atual.titulo}`
       : 'Nenhum programa no momento';
   }
 }
