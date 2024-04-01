@@ -524,6 +524,7 @@ a {
 
 .mapComponent {
   max-width: 38vw;
+  overflow: visible;
 }
 
 
@@ -587,4 +588,13 @@ a {
   background-color: #352598;
   transition: all 0.3s ease;
 
+}
+
+
+
+#songDisplay {
+  color: white;
+  background-color: black;
+  padding: 10px;
+  margin-top: 10px;
 }
