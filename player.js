@@ -134,6 +134,7 @@ const programas = [
   },
   { dia: [1, 2, 3, 4, 5], inicio: 22, fim: 24, titulo: 'Slow Motion' },
 ];
+
 const getPrograma = () => {
   const currentDay = new Date().getDay();
   const currentHour = new Date().getHours();
@@ -194,10 +195,55 @@ function renderPlayer() {
     },
   };
 
+  let style = document.createElement('style');
+  style.innerHTML = `
+  .slide-in {
+    animation: slideIn ease 0.5s;
+    animation-fill-mode: forwards;
+  }
+  .slide-out {
+    animation: slideOut ease 0.5s;
+    animation-fill-mode: forwards;
+  }
+  @keyframes slideIn {
+    0% {transform: translateY(-100%); opacity: 0;}
+    100% {transform: translateY(0); opacity: 1;}
+  }
+  @keyframes slideOut {
+    0% {transform: translateY(0); opacity: 1;}
+    100% {transform: translateY(-100%); opacity: 0;}
+  }
+`;
+  document.head.appendChild(style);
+
   function updatePlayPauseButton() {
     const playPauseButton = document.getElementById('playPauseButton');
-    playPauseButton.textContent = PlayerContext.isPlaying ? 'Pause' : 'Play';
+    const playButton = document.getElementById('playButton');
+    const playSVG =
+      '<svg xmlns="http://www.w3.org/2000/svg" width="52" height="52" fill="#541084" viewBox="0 0 256 256"><path d="M176,128a12,12,0,0,1-5.17,9.87l-52,36A12,12,0,0,1,100,164V92a12,12,0,0,1,18.83-9.87l52,36A12,12,0,0,1,176,128Zm60,0A108,108,0,1,1,128,20,108.12,108.12,0,0,1,236,128Zm-24,0a84,84,0,1,0-84,84A84.09,84.09,0,0,0,212,128Z"></path></svg>';
+    const pauseSVG =
+      '<svg xmlns="http://www.w3.org/2000/svg" width="52" height="52" fill="#541084" viewBox="0 0 256 256"><path d="M128,20A108,108,0,1,0,236,128,108.12,108.12,0,0,0,128,20Zm0,192a84,84,0,1,1,84-84A84.09,84.09,0,0,1,128,212ZM116,96v64a12,12,0,0,1-24,0V96a12,12,0,0,1,24,0Zm48,0v64a12,12,0,0,1-24,0V96a12,12,0,0,1,24,0Z"></path></svg>';
+    if (PlayerContext.isPlaying) {
+      playPauseButton.innerHTML = pauseSVG;
+      playerContainer.style.display = 'flex';
+      playerContainer.classList.remove('slide-out');
+      playerContainer.classList.add('slide-in');
+      playButton.style.display = 'none';
+      playButton.classList.remove('slide-in');
+      playButton.classList.add('slide-out');
+    } else {
+      playPauseButton.innerHTML = playSVG;
+      playerContainer.style.display = 'none';
+      playerContainer.classList.remove('slide-in');
+      playerContainer.classList.add('slide-out');
+      playButton.style.display = 'flex';
+      playButton.classList.remove('slide-out');
+      playButton.classList.add('slide-in');
+    }
   }
+
+  const playSVG = 'play';
+  const pauseSVG = 'pause';
 
   const playPauseButton = createElement(
     'button',
@@ -205,11 +251,23 @@ function renderPlayer() {
       id: 'playPauseButton',
       onclick: () => {
         PlayerContext.setIsPlaying(!PlayerContext.isPlaying);
+        updatePlayPauseButton();
       },
+      style: `
+          background-color: transparent; /* Verde */
+          border: none;
+          color: #541084;
+          padding: 0;
+          text-align: center;
+          text-decoration: none;
+          display: inline-block;
+          
+          margin: 4px 2px;
+          cursor: pointer;
+        `,
     },
-    PlayerContext.isPlaying ? 'Pause' : 'Play'
+    PlayerContext.isPlaying ? pauseSVG : playSVG
   );
-
   const volumeControl = createElement('input', {
     type: 'range',
     min: '0',
@@ -250,6 +308,7 @@ function renderPlayer() {
     )
   );
 
+  document.head.appendChild(style);
   document.addEventListener('DOMContentLoaded', function () {
     var classes = [
       'paraipaba',
@@ -303,79 +362,156 @@ function renderPlayer() {
       });
     });
   });
+  const programDisplay = createElement(
+    'div',
+    { id: 'programDisplay' },
+    'Nenhum programa no momento'
+  );
+  document.body.appendChild(programDisplay);
 
+  // Função para atualizar a exibição do programa
+  function updateProgramDisplay() {
+    const programDisplay = document.getElementById('programDisplay');
+    if (programDisplay) {
+      const currentProgram = getPrograma();
+      programDisplay.textContent = currentProgram.atual
+        ? // ? `Tocando agora: ${currentProgram.atual.titulo}`
+          `Tocando agora `
+        : 'Nenhum programa no momento';
+    }
+  }
+
+  setInterval(updateProgramDisplay, 1000 * 60);
+
+  updateProgramDisplay();
+  const audioElement = createElement('audio', {
+    id: 'audioElement',
+    src: radios.find((radio) => radio.title === 'Fortaleza').url,
+  });
+  document.body.appendChild(audioElement);
+  // Função para buscar a música atual
+  function fetchSong() {
+    fetch('https://webradio.amsolution.com.br/api/nowplaying/plus', {
+      headers: {
+        Authorization: 'ec1e12625c87f3fd:3522595694202dccc04b294711eb85cd',
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (
+          data.now_playing.song.artist.toUpperCase() === 'PLUS FM' &&
+          data.now_playing.song.title.toUpperCase() === 'AQUI É LEGAL DEMAIS!'
+        ) {
+          const currentProgram = getPrograma();
+          currentSong = currentProgram.atual
+            ? `PLUS FM - ${currentProgram.atual.titulo}`
+            : 'Nenhum programa no momento';
+        } else {
+          currentSong =
+            data.now_playing.song.artist + ' - ' + data.now_playing.song.title;
+        }
+        updateCurrentSongDisplay();
+      })
+      .catch((error) => {
+        console.error('Erro:', error);
+      });
+  }
+  function updateCurrentSongDisplay() {
+    const songDisplay = document.getElementById('songDisplay');
+    if (songDisplay) {
+      songDisplay.textContent = currentSong
+        ? `${currentSong}`
+        : 'PLUS FM - AQUI  É LEGAL DEMAIS!';
+    }
+  }
+
+  fetchSong();
+
+  setInterval(fetchSong, 10000);
+
+  const songDisplay = createElement(
+    'div',
+    { id: 'songDisplay' },
+    'Nenhuma música tocando'
+  );
+  document.body.appendChild(songDisplay);
   const playerContainer = createElement('div', {
     className: 'containerPlayer',
   });
+  const columnContainer = createElement('div', {
+    className: 'columnContainer',
+  });
+  const separator = createElement('div', {
+    className: 'separator',
+  });
   playerContainer.appendChild(playPauseButton);
-  playerContainer.appendChild(volumeControl);
-  playerContainer.appendChild(radioSelect);
+  // playerContainer.appendChild(volumeControl);
+  // Adicionando a nova divDropdown
+  const divDropdown = createElement('div', { id: 'divDropdown' });
 
-  document.body.appendChild(playerContainer);
-}
+  // Cria o elemento SVG
+  const svgElement = document.createElementNS(
+    'http://www.w3.org/2000/svg',
+    'svg'
+  );
+  svgElement.setAttribute('width', '20');
+  svgElement.setAttribute('height', '20');
+  svgElement.setAttribute('fill', '#541084');
+  svgElement.setAttribute('viewBox', '0 0 256 256');
 
-const programDisplay = createElement(
-  'div',
-  { id: 'programDisplay' },
-  'Nenhum programa no momento'
-);
-document.body.appendChild(programDisplay);
+  // Cria o elemento path e anexa ao SVG
+  const pathElement = document.createElementNS(
+    'http://www.w3.org/2000/svg',
+    'path'
+  );
+  pathElement.setAttribute(
+    'd',
+    'M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80A8,8,0,0,1,48,88H208a8,8,0,0,1,5.66,13.66Z'
+  );
+  svgElement.appendChild(pathElement);
 
-// Função para atualizar a exibição do programa
-function updateProgramDisplay() {
-  const programDisplay = document.getElementById('programDisplay');
-  if (programDisplay) {
-    const currentProgram = getPrograma();
-    programDisplay.textContent = currentProgram.atual
-      ? `Programa atual: ${currentProgram.atual.titulo}`
-      : 'Nenhum programa no momento';
-  }
-}
-
-setInterval(updateProgramDisplay, 1000 * 60);
-
-updateProgramDisplay();
-const audioElement = createElement('audio', {
-  id: 'audioElement',
-  src: radios.find((radio) => radio.title === 'Fortaleza').url,
-});
-document.body.appendChild(audioElement);
-// Função para buscar a música atual
-function fetchSong() {
-  fetch('https://webradio.amsolution.com.br/api/nowplaying/plus', {
-    headers: {
-      Authorization: 'ec1e12625c87f3fd:3522595694202dccc04b294711eb85cd',
+  const playButton = createElement(
+    'div',
+    {
+      id: 'playButton',
+      onclick: () => {
+        PlayerContext.setIsPlaying(true);
+        updatePlayPauseButton();
+      },
+      style: `
+        display: flex;
+        font-size: 20px;
+        cursor: pointer;
+        padding: 5px 15px;
+        background-color: white; 
+        color: #541084;
+        height: 1rem;
+        width: auto; 
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        top:0.7rem;
+        z-index: 99;
+        font-family: "Rubik", sans-serif;
+        font-weight: 500;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+      `,
     },
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      console.log(data.now_playing.song);
-      currentSong =
-        data.now_playing.song.title + ' - ' + data.now_playing.song.artist; // Alterado aqui
-      updateCurrentSongDisplay();
-    })
-    .catch((error) => {
-      console.error('Erro:', error);
-    });
+    'OUÇA AQUI'
+  );
+
+  // Anexa o SVG ao botão de play
+  playButton.appendChild(svgElement);
+  columnContainer.appendChild(programDisplay);
+  columnContainer.appendChild(separator);
+  columnContainer.appendChild(songDisplay);
+  playerContainer.appendChild(columnContainer);
+  playerContainer.appendChild(radioSelect);
+  document.body.appendChild(playerContainer);
+  divDropdown.appendChild(playButton);
+  document.body.appendChild(divDropdown);
 }
-function updateCurrentSongDisplay() {
-  const songDisplay = document.getElementById('songDisplay');
-  if (songDisplay) {
-    songDisplay.textContent = currentSong
-      ? `Tocando agora: ${currentSong}`
-      : 'Nenhuma música tocando';
-  }
-}
-
-fetchSong();
-
-setInterval(fetchSong, 10000);
-
-const songDisplay = createElement(
-  'div',
-  { id: 'songDisplay' },
-  'Nenhuma música tocando'
-);
-document.body.appendChild(songDisplay);
 
 renderPlayer();
