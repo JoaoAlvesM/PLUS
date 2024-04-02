@@ -1,8 +1,9 @@
 .containerPlayer {
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
   padding: 10px;
+  width: 100vw;
 }
 
 html {
@@ -593,8 +594,35 @@ a {
 
 
 #songDisplay {
-  color: white;
-  background-color: black;
-  padding: 10px;
-  margin-top: 10px;
+  color: #541084;
+  font-weight: 500;
+}
+
+.columnContainer {
+  font-weight: 200;
+  color: #541084;
+  font-family: "Rubik", sans-serif;
+  font-size: 21px;
+  display: flex;
+  flex-direction: column;
+  padding-inline: 1rem;
+
+}
+
+.separator {
+  border-bottom: 1px solid #000;
+
+  height: 1px;
+  width: 65%;
+  margin-block: 0.3rem;
+
+}
+
+#divDropdown {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 0.5rem;
+  background-color: white;
 }
