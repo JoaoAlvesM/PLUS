@@ -670,4 +670,67 @@ a {
   left: 50%;
   transform: translate(-50%, -50%);
   pointer-events: none;
+  max-width: 500px;
+}
+
+.imagem-absoluta.Aracati {
+  top: 38%;
+  left: 75%;
+}
+
+.imagem-absoluta.Cariri {
+  top: 89%;
+  left: 62%;
+}
+
+.imagem-absoluta.Cascavel {
+  top: 30.5%;
+  left: 70%;
+}
+
+.imagem-absoluta.Catarina {
+  top: 65%;
+  left: 54%;
+}
+
+.imagem-absoluta.Crateus {
+  top: 50%;
+  left: 48%;
+}
+
+.imagem-absoluta.Iguatu {
+  top: 71%;
+  left: 55%;
+}
+
+.imagem-absoluta.Pacajus {
+  top: 26.5%;
+  left: 64%;
+  width: 400px;
+}
+
+.imagem-absoluta.Paraipaba {
+  top: 13%;
+  left: 61%;
+}
+
+.imagem-absoluta.Rede {
+  top: 17%;
+  left: 66.5%;
+}
+
+.imagem-absoluta.Redencao {
+  top: 32%;
+  left: 63%;
+  width: 400px;
+}
+
+.imagem-absoluta.SantaQuiteria {
+  top: 30%;
+  left: 53%;
+}
+
+.imagem-absoluta.Sobral {
+  top: 16%;
+  left: 50%;
 }

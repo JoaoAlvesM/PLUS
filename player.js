@@ -392,6 +392,7 @@ function renderPlayer() {
           // Atualiza o valor do select para a classe do elemento clicado
           document.getElementById('radioSelect').value =
             classToTitle[className];
+            radioSelect.onchange();
           console.log('Valor selecionado: ', className);
         });
       });
