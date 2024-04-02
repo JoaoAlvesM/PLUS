@@ -3,7 +3,20 @@
   justify-content: center;
   align-items: center;
   padding: 10px;
-  width: 100vw;
+  width: auto;
+  align-self: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  /* Adiciona a propriedade left: 0; */
+  right: 0;
+  z-index: 100;
+  background-color: white;
+  margin-left: auto;
+  /* Adiciona a propriedade margin-left: auto; */
+  margin-right: auto;
+
+
 }
 
 html {
@@ -625,4 +638,28 @@ a {
   width: 100vw;
   height: 0.5rem;
   background-color: white;
+
+  position: fixed;
+  top: 0;
+  z-index: 100;
+}
+
+#radioSelect {
+  width: auto;
+  font-weight: 500;
+  font-family: "Rubik", sans-serif;
+  font-size: 21px;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: none;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: #541084 url('https://r2.easyimg.io/0xp3x0ug9/arrow-down.png') no-repeat 95% center;
+  background-size: 20px;
+}
+
+#radioSelect::-ms-expand {
+  display: none;
 }

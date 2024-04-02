@@ -195,6 +195,27 @@ function renderPlayer() {
     },
   };
 
+  let style = document.createElement('style');
+  style.innerHTML = `
+  .slide-in {
+    animation: slideIn ease 0.5s;
+    animation-fill-mode: forwards;
+  }
+  .slide-out {
+    animation: slideOut ease 0.5s;
+    animation-fill-mode: forwards;
+  }
+  @keyframes slideIn {
+    0% {transform: translateY(-100%); opacity: 0;}
+    100% {transform: translateY(0); opacity: 1;}
+  }
+  @keyframes slideOut {
+    0% {transform: translateY(0); opacity: 1;}
+    100% {transform: translateY(-100%); opacity: 0;}
+  }
+`;
+  document.head.appendChild(style);
+
   function updatePlayPauseButton() {
     const playPauseButton = document.getElementById('playPauseButton');
     const playButton = document.getElementById('playButton');
@@ -205,11 +226,19 @@ function renderPlayer() {
     if (PlayerContext.isPlaying) {
       playPauseButton.innerHTML = pauseSVG;
       playerContainer.style.display = 'flex';
+      playerContainer.classList.remove('slide-out');
+      playerContainer.classList.add('slide-in');
       playButton.style.display = 'none';
+      playButton.classList.remove('slide-in');
+      playButton.classList.add('slide-out');
     } else {
       playPauseButton.innerHTML = playSVG;
       playerContainer.style.display = 'none';
+      playerContainer.classList.remove('slide-in');
+      playerContainer.classList.add('slide-out');
       playButton.style.display = 'flex';
+      playButton.classList.remove('slide-out');
+      playButton.classList.add('slide-in');
     }
   }
 
@@ -279,6 +308,7 @@ function renderPlayer() {
     )
   );
 
+  document.head.appendChild(style);
   document.addEventListener('DOMContentLoaded', function () {
     var classes = [
       'paraipaba',
