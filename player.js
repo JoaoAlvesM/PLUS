@@ -78,7 +78,7 @@ const radios = [
     isPlaying: false,
     frequency: '106.5',
     width: '14vw',
-    svgClass: 'santaquiteira',
+    svgClass: 'santaquiteria',
   },
 
   {
@@ -298,6 +298,19 @@ function renderPlayer() {
     {
       id: 'radioSelect',
       oninput: (event) => handleRadioChange(event),
+      onchange: function () {
+        var length = 0;
+        if (this.value === 'Santa Quitéria') {
+          var test = document.createElement('span');
+          test.textContent = this.options[this.selectedIndex].textContent;
+          document.body.appendChild(test);
+          length = test.offsetWidth;
+          document.body.removeChild(test);
+          this.style.width = Math.max(length, 200) + 'px';
+        } else {
+          this.style.width = 'auto';
+        }
+      },
     },
     ...radios.map((radio) =>
       createElement(
@@ -307,6 +320,9 @@ function renderPlayer() {
       )
     )
   );
+
+  // Dispara o evento 'change' para ajustar a largura inicial do select
+  radioSelect.dispatchEvent(new Event('change'));
 
   document.head.appendChild(style);
   document.addEventListener('DOMContentLoaded', function () {
@@ -325,7 +341,21 @@ function renderPlayer() {
       'aracati',
       'playing',
     ];
-
+    var classToTitle = {
+      paraipaba: 'Paraipaba',
+      crateus: 'Crateús',
+      catarina: 'Catarina',
+      iguatu: 'Iguatu',
+      cariri: 'Cariri',
+      sobral: 'Sobral',
+      santaquiteria: 'Santa Quitéria',
+      cascavel: 'Cascavel',
+      redencao: 'Redenção',
+      pacajus: 'Pacajus',
+      fortaleza: 'Fortaleza',
+      aracati: 'Aracati',
+      playing: 'Playing',
+    };
     classes.forEach(function (cls) {
       var elements = document.querySelectorAll('.' + cls);
       elements.forEach(function (element) {
@@ -358,6 +388,11 @@ function renderPlayer() {
           // Chama a função handleRadioChange com o nome da classe como o valor do seletor de rádio
           handleRadioChange({ target: { value: className } }, true);
           this.ownerSVGElement.appendChild(this);
+
+          // Atualiza o valor do select para a classe do elemento clicado
+          document.getElementById('radioSelect').value =
+            classToTitle[className];
+          console.log('Valor selecionado: ', className);
         });
       });
     });
