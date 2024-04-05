@@ -78,7 +78,7 @@ const radios = [
     isPlaying: false,
     frequency: '106.5',
     width: '14vw',
-    svgClass: 'santaquiteira',
+    svgClass: 'santaquiteria',
   },
 
   {
@@ -215,7 +215,38 @@ function renderPlayer() {
   }
 `;
   document.head.appendChild(style);
+  function applyAnimations(radioTitle) {
+    console.log('Applying animations for radio:', radioTitle);
 
+    // Check if radioTitle is not undefined
+    if (radioTitle) {
+      // Remove classes from previously selected radio
+      document
+        .querySelectorAll('.pulsando, .visivel')
+        .forEach(function (element) {
+          element.classList.remove('pulsando');
+          element.classList.remove('visivel');
+        });
+
+      // Add classes to selected radio
+      let formattedTitle = formatRadioTitle(radioTitle);
+      if (radioTitle === 'Fortaleza') {
+        formattedTitle = 'Rede';
+      }
+      const selectedImage = document.getElementById(`imagem-${formattedTitle}`);
+      const selectedCircle = document.getElementById(
+        `circulo-${formattedTitle}`
+      );
+      if (selectedImage && selectedCircle) {
+        selectedImage.classList.add('pulsando');
+        selectedCircle.classList.add('visivel');
+      }
+
+      console.log('Animations applied for radio:', radioTitle);
+    } else {
+      console.log('Cannot apply animations: radioTitle is undefined');
+    }
+  }
   function updatePlayPauseButton() {
     const playPauseButton = document.getElementById('playPauseButton');
     const playButton = document.getElementById('playButton');
@@ -223,6 +254,7 @@ function renderPlayer() {
       '<svg xmlns="http://www.w3.org/2000/svg" width="52" height="52" fill="#541084" viewBox="0 0 256 256"><path d="M176,128a12,12,0,0,1-5.17,9.87l-52,36A12,12,0,0,1,100,164V92a12,12,0,0,1,18.83-9.87l52,36A12,12,0,0,1,176,128Zm60,0A108,108,0,1,1,128,20,108.12,108.12,0,0,1,236,128Zm-24,0a84,84,0,1,0-84,84A84.09,84.09,0,0,0,212,128Z"></path></svg>';
     const pauseSVG =
       '<svg xmlns="http://www.w3.org/2000/svg" width="52" height="52" fill="#541084" viewBox="0 0 256 256"><path d="M128,20A108,108,0,1,0,236,128,108.12,108.12,0,0,0,128,20Zm0,192a84,84,0,1,1,84-84A84.09,84.09,0,0,1,128,212ZM116,96v64a12,12,0,0,1-24,0V96a12,12,0,0,1,24,0Zm48,0v64a12,12,0,0,1-24,0V96a12,12,0,0,1,24,0Z"></path></svg>';
+
     if (PlayerContext.isPlaying) {
       playPauseButton.innerHTML = pauseSVG;
       playerContainer.style.display = 'flex';
@@ -231,6 +263,32 @@ function renderPlayer() {
       playButton.style.display = 'none';
       playButton.classList.remove('slide-in');
       playButton.classList.add('slide-out');
+
+      // Add 'pulsando' and 'visivel' classes to selected radio
+      const selectedRadio = radios.find(
+        (radio) => radio.title === PlayerContext.currentRadio
+      );
+      if (selectedRadio) {
+        let formattedTitle = formatRadioTitle(selectedRadio.title);
+        if (selectedRadio.title === 'Fortaleza') {
+          formattedTitle = 'Rede';
+        }
+        const selectedImage = document.getElementById(
+          `imagem-${formattedTitle}`
+        );
+        const selectedCircle = document.getElementById(
+          `circulo-${formattedTitle}`
+        );
+        if (selectedImage && selectedCircle) {
+          // Remove and add classes to restart animation
+          selectedImage.classList.remove('pulsando');
+          selectedCircle.classList.remove('visivel');
+          setTimeout(function () {
+            selectedImage.classList.add('pulsando');
+            selectedCircle.classList.add('visivel');
+          }, 10); // Add a small delay
+        }
+      }
     } else {
       playPauseButton.innerHTML = playSVG;
       playerContainer.style.display = 'none';
@@ -239,6 +297,14 @@ function renderPlayer() {
       playButton.style.display = 'flex';
       playButton.classList.remove('slide-out');
       playButton.classList.add('slide-in');
+
+      // Remove 'pulsando' and 'visivel' classes from all radios
+      document
+        .querySelectorAll('.pulsando, .visivel')
+        .forEach(function (element) {
+          element.classList.remove('pulsando');
+          element.classList.remove('visivel');
+        });
     }
   }
 
@@ -251,23 +317,27 @@ function renderPlayer() {
       id: 'playPauseButton',
       onclick: () => {
         PlayerContext.setIsPlaying(!PlayerContext.isPlaying);
+        applyAnimations(PlayerContext.currentRadio);
         updatePlayPauseButton();
+        console.log('Botão play/pause clicado');
+        console.log('PlayerContext.isPlaying:', PlayerContext.isPlaying);
       },
       style: `
-          background-color: transparent; /* Verde */
-          border: none;
-          color: #541084;
-          padding: 0;
-          text-align: center;
-          text-decoration: none;
-          display: inline-block;
-          
-          margin: 4px 2px;
-          cursor: pointer;
-        `,
+        background-color: transparent; /* Verde */
+        border: none;
+        color: #541084;
+        padding: 0;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        
+        margin: 4px 2px;
+        cursor: pointer;
+      `,
     },
     PlayerContext.isPlaying ? pauseSVG : playSVG
   );
+
   const volumeControl = createElement('input', {
     type: 'range',
     min: '0',
@@ -275,6 +345,13 @@ function renderPlayer() {
     value: '50',
     onChange: (event) => {},
   });
+
+  function formatRadioTitle(title) {
+    return title
+      .replace(/\s+/g, '')
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '');
+  }
 
   function handleRadioChange(event, useSvgClass = false) {
     console.log('Radio select changed:', event.target.value);
@@ -288,6 +365,8 @@ function renderPlayer() {
       audioElement.src = selectedRadio.url;
       audioElement.load();
       PlayerContext.setIsPlaying(true);
+      PlayerContext.currentRadio = selectedRadio; // Set currentRadio to the selected radio
+      applyAnimations(selectedRadio.title);
     } else {
       console.log('No radio found for selection');
     }
@@ -298,6 +377,19 @@ function renderPlayer() {
     {
       id: 'radioSelect',
       oninput: (event) => handleRadioChange(event),
+      onchange: function () {
+        var length = 0;
+        if (this.value === 'Santa Quitéria') {
+          var test = document.createElement('span');
+          test.textContent = this.options[this.selectedIndex].textContent;
+          document.body.appendChild(test);
+          length = test.offsetWidth;
+          document.body.removeChild(test);
+          this.style.width = Math.max(length, 200) + 'px';
+        } else {
+          this.style.width = 'auto';
+        }
+      },
     },
     ...radios.map((radio) =>
       createElement(
@@ -307,6 +399,9 @@ function renderPlayer() {
       )
     )
   );
+
+  // Dispara o evento 'change' para ajustar a largura inicial do select
+  radioSelect.dispatchEvent(new Event('change'));
 
   document.head.appendChild(style);
   document.addEventListener('DOMContentLoaded', function () {
@@ -325,7 +420,21 @@ function renderPlayer() {
       'aracati',
       'playing',
     ];
-
+    var classToTitle = {
+      paraipaba: 'Paraipaba',
+      crateus: 'Crateús',
+      catarina: 'Catarina',
+      iguatu: 'Iguatu',
+      cariri: 'Cariri',
+      sobral: 'Sobral',
+      santaquiteria: 'Santa Quitéria',
+      cascavel: 'Cascavel',
+      redencao: 'Redenção',
+      pacajus: 'Pacajus',
+      fortaleza: 'Fortaleza',
+      aracati: 'Aracati',
+      playing: 'Playing',
+    };
     classes.forEach(function (cls) {
       var elements = document.querySelectorAll('.' + cls);
       elements.forEach(function (element) {
@@ -358,6 +467,12 @@ function renderPlayer() {
           // Chama a função handleRadioChange com o nome da classe como o valor do seletor de rádio
           handleRadioChange({ target: { value: className } }, true);
           this.ownerSVGElement.appendChild(this);
+
+          // Atualiza o valor do select para a classe do elemento clicado
+          document.getElementById('radioSelect').value =
+            classToTitle[className];
+          radioSelect.onchange();
+          console.log('Valor selecionado: ', className);
         });
       });
     });
@@ -368,7 +483,42 @@ function renderPlayer() {
     'Nenhum programa no momento'
   );
   document.body.appendChild(programDisplay);
-
+  const playButton = createElement(
+    'div',
+    {
+      id: 'playButton',
+      onclick: () => {
+        if (PlayerContext.currentRadio) {
+          PlayerContext.setIsPlaying(true);
+          updatePlayPauseButton();
+          applyAnimations(PlayerContext.currentRadio.title);
+        } else {
+          console.log('Cannot play: PlayerContext.currentRadio is undefined');
+        }
+      },
+      style: `
+        display: flex;
+        font-size: 20px;
+        cursor: pointer;
+        padding: 5px 15px;
+        background-color: white; 
+        color: #541084;
+        height: 1rem;
+        width: auto; 
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        top:0.7rem;
+        z-index: 99;
+        font-family: "Rubik", sans-serif;
+        font-weight: 500;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+      `,
+    },
+    'OUÇA AQUI'
+  );
   // Função para atualizar a exibição do programa
   function updateProgramDisplay() {
     const programDisplay = document.getElementById('programDisplay');
@@ -445,11 +595,9 @@ function renderPlayer() {
     className: 'separator',
   });
   playerContainer.appendChild(playPauseButton);
-  // playerContainer.appendChild(volumeControl);
-  // Adicionando a nova divDropdown
+
   const divDropdown = createElement('div', { id: 'divDropdown' });
 
-  // Cria o elemento SVG
   const svgElement = document.createElementNS(
     'http://www.w3.org/2000/svg',
     'svg'
@@ -469,38 +617,6 @@ function renderPlayer() {
     'M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80A8,8,0,0,1,48,88H208a8,8,0,0,1,5.66,13.66Z'
   );
   svgElement.appendChild(pathElement);
-
-  const playButton = createElement(
-    'div',
-    {
-      id: 'playButton',
-      onclick: () => {
-        PlayerContext.setIsPlaying(true);
-        updatePlayPauseButton();
-      },
-      style: `
-        display: flex;
-        font-size: 20px;
-        cursor: pointer;
-        padding: 5px 15px;
-        background-color: white; 
-        color: #541084;
-        height: 1rem;
-        width: auto; 
-        text-align: center;
-        justify-content: center;
-        align-items: center;
-        position: relative;
-        top:0.7rem;
-        z-index: 99;
-        font-family: "Rubik", sans-serif;
-        font-weight: 500;
-        border-bottom-left-radius: 10px;
-        border-bottom-right-radius: 10px;
-      `,
-    },
-    'OUÇA AQUI'
-  );
 
   // Anexa o SVG ao botão de play
   playButton.appendChild(svgElement);
