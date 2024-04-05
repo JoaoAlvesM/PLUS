@@ -664,73 +664,869 @@ a {
   display: none;
 }
 
-.imagem-absoluta {
+.imagem-absoluta {}
+
+.imagem-absoluta-Aracati {
+  top: 38%;
+  left: 75%;
+  position: absolute;
+
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  max-width: 500px;
+  z-index: 1;
+}
+
+@keyframes gota {
+  0% {
+    width: 0;
+    height: 0;
+  }
+
+  100% {
+    width: 120px;
+    height: 120px;
+  }
+}
+
+.circulo-Aracati {
+  position: absolute;
+  top: 38%;
+  left: 69%;
+  width: 100px;
+  height: 100px;
+  transform: translate(-50%, -50%);
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  /* Borda branca com 40% de opacidade */
+  border-radius: 50%;
+  z-index: 0;
+  animation: gota 4s infinite;
+  pointer-events: none;
+}
+
+.circulo-Aracati::before,
+.circulo-Aracati::after,
+.circulo-Aracati>.circulo-filho-Aracati {
+  content: "";
   position: absolute;
   top: 50%;
   left: 50%;
+  border-radius: 50%;
+  animation: gota 4s infinite;
+  pointer-events: none;
+}
+
+.circulo-Aracati::before {
+  width: 70px;
+  height: 70px;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 0.25);
+  /* Cor de fundo branca com 25% de opacidade */
+  animation-delay: 1s;
+  pointer-events: none;
+}
+
+.circulo-Aracati::after {
+  width: 50px;
+  height: 50px;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 0.2);
+  /* Cor de fundo branca com 20% de opacidade */
+  animation-delay: 2s;
+  pointer-events: none;
+}
+
+.circulo-Aracati>.circulo-filho-Aracati {
+  width: 30px;
+  height: 30px;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 0.1);
+  /* Cor de fundo branca com 10% de opacidade */
+  animation-delay: 3s;
+  pointer-events: none;
+}
+
+.imagem-absoluta-Cariri {
+  top: 89%;
+  left: 62%;
+  position: absolute;
+  z-index: 1;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  max-width: 500px;
+  pointer-events: none;
+}
+
+.circulo-Cariri {
+  position: absolute;
+  top: 89%;
+  left: 56%;
+  width: 100px;
+  height: 100px;
+  transform: translate(-50%, -50%);
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  /* Borda branca com 40% de opacidade */
+  border-radius: 50%;
+  z-index: 0;
+  animation: gota 4s infinite;
+  pointer-events: none;
+}
+
+.circulo-Cariri::before,
+.circulo-Cariri::after,
+.circulo-Cariri>.circulo-filho-Cariri {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 50%;
+  animation: gota 4s infinite;
+  pointer-events: none;
+}
+
+.circulo-Cariri::before {
+  width: 70px;
+  height: 70px;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 0.25);
+  /* Cor de fundo branca com 25% de opacidade */
+  animation-delay: 1s;
+  pointer-events: none;
+}
+
+.circulo-Cariri::after {
+  width: 50px;
+  height: 50px;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 0.2);
+  /* Cor de fundo branca com 20% de opacidade */
+  animation-delay: 2s;
+  pointer-events: none;
+}
+
+.circulo-Cariri>.circulo-filho-Cariri {
+  width: 30px;
+  height: 30px;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 0.1);
+  /* Cor de fundo branca com 10% de opacidade */
+  animation-delay: 3s;
+  pointer-events: none;
+}
+
+.imagem-absoluta-Cascavel {
+  top: 30.5%;
+  left: 69%;
+  position: absolute;
+  z-index: 1;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  max-width: 500px;
+  width: 400px;
+  pointer-events: none;
+}
+
+.circulo-Cascavel {
+  position: absolute;
+  top: 30.5%;
+  left: 64%;
+  width: 100px;
+  height: 100px;
+  transform: translate(-50%, -50%);
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  /* Borda branca com 40% de opacidade */
+  border-radius: 50%;
+  z-index: 0;
+  animation: gota 4s infinite;
+  pointer-events: none;
+}
+
+.circulo-Cascavel::before,
+.circulo-Cascavel::after,
+.circulo-Cascavel>.circulo-filho-Casca.circulo-Cascavel {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 50%;
+  animation: gota 4s infinite;
+  pointer-events: none;
+}
+
+.circulo-Cascavel::before {
+  width: 70px;
+  height: 70px;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 0.25);
+  /* Cor de fundo branca com 25% de opacidade */
+  animation-delay: 1s;
+  pointer-events: none;
+}
+
+.circulo-Cascavel::after {
+  width: 50px;
+  height: 50px;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 0.2);
+  /* Cor de fundo branca com 20% de opacidade */
+  animation-delay: 2s;
+  pointer-events: none;
+}
+
+.circulo-Cascavel>.circulo-filho-Casca.circulo-Cascavel {
+  width: 30px;
+  height: 30px;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 0.1);
+  /* Cor de fundo branca com 10% de opacidade */
+  animation-delay: 3s;
+  pointer-events: none;
+}
+
+.imagem-absoluta-Catarina {
+  top: 65%;
+  left: 54%;
+  position: absolute;
+  z-index: 1;
   transform: translate(-50%, -50%);
   pointer-events: none;
   max-width: 500px;
 }
 
-.imagem-absoluta.Aracati {
-  top: 38%;
-  left: 75%;
-}
-
-.imagem-absoluta.Cariri {
-  top: 89%;
-  left: 62%;
-}
-
-.imagem-absoluta.Cascavel {
-  top: 30.5%;
-  left: 70%;
-}
-
-.imagem-absoluta.Catarina {
+.circulo-Catarina {
+  position: absolute;
   top: 65%;
-  left: 54%;
+  left: 47%;
+  width: 100px;
+  height: 100px;
+  transform: translate(-50%, -50%);
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  /* Borda branca com 40% de opacidade */
+  border-radius: 50%;
+  z-index: 0;
+  animation: gota 4s infinite;
+  pointer-events: none;
 }
 
-.imagem-absoluta.Crateus {
+.circulo-Catarina::before,
+.circulo-Catarina::after,
+.circulo-Catarina>.circulo-filho-Casca.circulo-Catarina {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 50%;
+  animation: gota 4s infinite;
+  pointer-events: none;
+}
+
+.circulo-Catarina::before {
+  width: 70px;
+  height: 70px;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 0.25);
+  /* Cor de fundo branca com 25% de opacidade */
+  animation-delay: 1s;
+  pointer-events: none;
+}
+
+.circulo-Catarina::after {
+  width: 50px;
+  height: 50px;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 0.2);
+  /* Cor de fundo branca com 20% de opacidade */
+  animation-delay: 2s;
+  pointer-events: none;
+}
+
+.circulo-Catarina>.circulo-filho-Casca.circulo-Catarina {
+  width: 30px;
+  height: 30px;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 0.1);
+  /* Cor de fundo branca com 10% de opacidade */
+  animation-delay: 3s;
+  pointer-events: none;
+}
+
+.imagem-absoluta-Crateus {
   top: 50%;
   left: 48%;
+  position: absolute;
+  z-index: 1;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  max-width: 500px;
+  pointer-events: none;
 }
 
-.imagem-absoluta.Iguatu {
+.circulo-Crateus {
+  position: absolute;
+  top: 50%;
+  left: 40%;
+  width: 100px;
+  height: 100px;
+  transform: translate(-50%, -50%);
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  /* Borda branca com 40% de opacidade */
+  border-radius: 50%;
+  z-index: 0;
+  animation: gota 4s infinite;
+  pointer-events: none;
+}
+
+.circulo-Crateus::before,
+.circulo-Crateus::after,
+.circulo-Crateus>.circulo-filho-Casca.circulo-Crateus {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 50%;
+  pointer-events: none;
+  animation: gota 4s infinite;
+}
+
+.circulo-Crateus::before {
+  width: 70px;
+  height: 70px;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 0.25);
+  /* Cor de fundo branca com 25% de opacidade */
+  animation-delay: 1s;
+  pointer-events: none;
+}
+
+.circulo-Crateus::after {
+  width: 50px;
+  height: 50px;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 0.2);
+  /* Cor de fundo branca com 20% de opacidade */
+  animation-delay: 2s;
+  pointer-events: none;
+}
+
+.circulo-Crateus>.circulo-filho-Casca.circulo-Crateus {
+  width: 30px;
+  height: 30px;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 0.1);
+  /* Cor de fundo branca com 10% de opacidade */
+  animation-delay: 3s;
+  pointer-events: none;
+}
+
+.imagem-absoluta-Iguatu {
   top: 71%;
   left: 55%;
+  position: absolute;
+  z-index: 1;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  max-width: 500px;
+  pointer-events: none;
 }
 
-.imagem-absoluta.Pacajus {
+.circulo-Iguatu {
+  position: absolute;
+  top: 71%;
+  left: 50%;
+  width: 100px;
+  height: 100px;
+  transform: translate(-50%, -50%);
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  /* Borda branca com 40% de opacidade */
+  border-radius: 50%;
+  z-index: 0;
+  animation: gota 4s infinite;
+  pointer-events: none;
+}
+
+.circulo-Iguatu::before,
+.circulo-Iguatu::after,
+.circulo-Iguatu>.circulo-filho-Casca.circulo-Iguatu {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 50%;
+  animation: gota 4s infinite;
+  pointer-events: none;
+}
+
+.circulo-Iguatu::before {
+  width: 70px;
+  height: 70px;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 0.25);
+  /* Cor de fundo branca com 25% de opacidade */
+  animation-delay: 1s;
+  pointer-events: none;
+}
+
+.circulo-Iguatu::after {
+  width: 50px;
+  height: 50px;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 0.2);
+  /* Cor de fundo branca com 20% de opacidade */
+  animation-delay: 2s;
+  pointer-events: none;
+}
+
+.circulo-Iguatu>.circulo-filho-Casca.circulo-Iguatu {
+  width: 30px;
+  height: 30px;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 0.1);
+  /* Cor de fundo branca com 10% de opacidade */
+  animation-delay: 3s;
+  pointer-events: none;
+}
+
+.imagem-absoluta-Pacajus {
   top: 26.5%;
   left: 64%;
+  position: absolute;
+  z-index: 1;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  max-width: 500px;
   width: 400px;
+  pointer-events: none;
 }
 
-.imagem-absoluta.Paraipaba {
+.circulo-Pacajus {
+  position: absolute;
+  top: 26.5%;
+  left: 59%;
+  width: 100px;
+  height: 100px;
+  transform: translate(-50%, -50%);
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  /* Borda branca com 40% de opacidade */
+  border-radius: 50%;
+  z-index: 0;
+  animation: gota 4s infinite;
+  pointer-events: none;
+}
+
+.circulo-Pacajus::before,
+.circulo-Pacajus::after,
+.circulo-Pacajus>.circulo-filho-Casca.circulo-Pacajus {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 50%;
+  animation: gota 4s infinite;
+  pointer-events: none;
+}
+
+.circulo-Pacajus::before {
+  width: 70px;
+  height: 70px;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 0.25);
+  /* Cor de fundo branca com 25% de opacidade */
+  animation-delay: 1s;
+  pointer-events: none;
+}
+
+.circulo-Pacajus::after {
+  width: 50px;
+  height: 50px;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 0.2);
+  /* Cor de fundo branca com 20% de opacidade */
+  animation-delay: 2s;
+  pointer-events: none;
+}
+
+.circulo-Pacajus>.circulo-filho-Casca.circulo-Pacajus {
+  width: 30px;
+  height: 30px;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 0.1);
+  /* Cor de fundo branca com 10% de opacidade */
+  animation-delay: 3s;
+  pointer-events: none;
+}
+
+.imagem-absoluta-Paraipaba {
   top: 13%;
   left: 61%;
+  position: absolute;
+  z-index: 1;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  max-width: 500px;
+  pointer-events: none;
 }
 
-.imagem-absoluta.Rede {
+.circulo-Paraipaba {
+  position: absolute;
+  top: 13%;
+  left: 53%;
+  width: 100px;
+  height: 100px;
+  transform: translate(-50%, -50%);
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  /* Borda branca com 40% de opacidade */
+  border-radius: 50%;
+  z-index: 0;
+  animation: gota 4s infinite;
+  pointer-events: none;
+}
+
+.circulo-Paraipaba::before,
+.circulo-Paraipaba::after,
+.circulo-Paraipaba>.circulo-filho-Casca.circulo-Paraipaba {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 50%;
+  animation: gota 4s infinite;
+  pointer-events: none;
+}
+
+.circulo-Paraipaba::before {
+  width: 70px;
+  height: 70px;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 0.25);
+  /* Cor de fundo branca com 25% de opacidade */
+  animation-delay: 1s;
+  pointer-events: none;
+}
+
+.circulo-Paraipaba::after {
+  width: 50px;
+  height: 50px;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 0.2);
+  /* Cor de fundo branca com 20% de opacidade */
+  animation-delay: 2s;
+  pointer-events: none;
+}
+
+.circulo-Paraipaba>.circulo-filho-Casca.circulo-Paraipaba {
+  width: 30px;
+  height: 30px;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 0.1);
+  /* Cor de fundo branca com 10% de opacidade */
+  animation-delay: 3s;
+  pointer-events: none;
+}
+
+.imagem-absoluta-Rede {
   top: 17%;
   left: 66.5%;
+  position: absolute;
+  z-index: 1;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  max-width: 500px;
+  pointer-events: none;
 }
 
-.imagem-absoluta.Redencao {
+.circulo-Rede {
+  position: absolute;
+  top: 17%;
+  left: 59%;
+  width: 100px;
+  height: 100px;
+  transform: translate(-50%, -50%);
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  /* Borda branca com 40% de opacidade */
+  border-radius: 50%;
+  z-index: 0;
+  animation: gota 4s infinite;
+  pointer-events: none;
+}
+
+.circulo-Rede::before,
+.circulo-Rede::after,
+.circulo-Rede>.circulo-filho-Casca.circulo-Rede {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 50%;
+  pointer-events: none;
+  animation: gota 4s infinite;
+}
+
+.circulo-Rede::before {
+  width: 70px;
+  height: 70px;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 0.25);
+  /* Cor de fundo branca com 25% de opacidade */
+  animation-delay: 1s;
+  pointer-events: none;
+}
+
+.circulo-Rede::after {
+  width: 50px;
+  height: 50px;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 0.2);
+  /* Cor de fundo branca com 20% de opacidade */
+  animation-delay: 2s;
+  pointer-events: none;
+}
+
+.circulo-Rede>.circulo-filho-Casca.circulo-Rede {
+  width: 30px;
+  height: 30px;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 0.1);
+  /* Cor de fundo branca com 10% de opacidade */
+  animation-delay: 3s;
+  pointer-events: none;
+}
+
+.imagem-absoluta-Redencao {
   top: 32%;
   left: 63%;
+  position: absolute;
+  z-index: 1;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  max-width: 500px;
   width: 400px;
+  pointer-events: none;
 }
 
-.imagem-absoluta.SantaQuiteria {
+.circulo-Redencao {
+  position: absolute;
+  top: 32%;
+  left: 58%;
+  width: 100px;
+  height: 100px;
+  transform: translate(-50%, -50%);
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  /* Borda branca com 40% de opacidade */
+  border-radius: 50%;
+  z-index: 0;
+  animation: gota 4s infinite;
+  pointer-events: none;
+}
+
+.circulo-Redencao::before,
+.circulo-Redencao::after,
+.circulo-Redencao>.circulo-filho-Casca.circulo-Redencao {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 50%;
+  animation: gota 4s infinite;
+  pointer-events: none;
+}
+
+.circulo-Redencao::before {
+  width: 70px;
+  height: 70px;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 0.25);
+  /* Cor de fundo branca com 25% de opacidade */
+  animation-delay: 1s;
+  pointer-events: none;
+}
+
+.circulo-Redencao::after {
+  width: 50px;
+  height: 50px;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 0.2);
+  /* Cor de fundo branca com 20% de opacidade */
+  animation-delay: 2s;
+  pointer-events: none;
+}
+
+.circulo-Redencao>.circulo-filho-Casca.circulo-Redencao {
+  width: 30px;
+  height: 30px;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 0.1);
+  /* Cor de fundo branca com 10% de opacidade */
+  animation-delay: 3s;
+  pointer-events: none;
+}
+
+.imagem-absoluta-SantaQuiteria {
   top: 30%;
   left: 53%;
+  position: absolute;
+  z-index: 1;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  max-width: 500px;
 }
 
-.imagem-absoluta.Sobral {
+.circulo-SantaQuiteria {
+  position: absolute;
+  top: 30%;
+  left: 46%;
+  width: 100px;
+  height: 100px;
+  transform: translate(-50%, -50%);
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  /* Borda branca com 40% de opacidade */
+  border-radius: 50%;
+  z-index: 0;
+  animation: gota 4s infinite;
+  pointer-events: none;
+}
+
+.circulo-SantaQuiteria::before,
+.circulo-SantaQuiteria::after,
+.circulo-SantaQuiteria>.circulo-filho-Casca.circulo-SantaQuiteria {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 50%;
+  animation: gota 4s infinite;
+  pointer-events: none;
+}
+
+.circulo-SantaQuiteria::before {
+  width: 70px;
+  height: 70px;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 0.25);
+  /* Cor de fundo branca com 25% de opacidade */
+  animation-delay: 1s;
+  pointer-events: none;
+}
+
+.circulo-SantaQuiteria::after {
+  width: 50px;
+  height: 50px;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 0.2);
+  /* Cor de fundo branca com 20% de opacidade */
+  animation-delay: 2s;
+  pointer-events: none;
+}
+
+.circulo-SantaQuiteria>.circulo-filho-Casca.circulo-SantaQuiteria {
+  width: 30px;
+  height: 30px;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 0.1);
+  /* Cor de fundo branca com 10% de opacidade */
+  animation-delay: 3s;
+  pointer-events: none;
+}
+
+.imagem-absoluta-Sobral {
   top: 16%;
   left: 50%;
+  position: absolute;
+  z-index: 1;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  max-width: 500px;
+}
+
+.circulo-Sobral {
+  position: absolute;
+  top: 16%;
+  left: 43%;
+  width: 100px;
+  height: 100px;
+  transform: translate(-50%, -50%);
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  /* Borda branca com 40% de opacidade */
+  border-radius: 50%;
+  z-index: 0;
+  animation: gota 4s infinite;
+  pointer-events: none;
+}
+
+.circulo-Sobral::before,
+.circulo-Sobral::after,
+.circulo-Sobral>.circulo-filho-Casca.circulo-Sobral {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 50%;
+  animation: gota 4s infinite;
+  pointer-events: none;
+}
+
+.circulo-Sobral::before {
+  width: 70px;
+  height: 70px;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 0.25);
+  /* Cor de fundo branca com 25% de opacidade */
+  animation-delay: 1s;
+  pointer-events: none;
+}
+
+.circulo-Sobral::after {
+  width: 50px;
+  height: 50px;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 0.2);
+  /* Cor de fundo branca com 20% de opacidade */
+  animation-delay: 2s;
+  pointer-events: none;
+}
+
+.circulo-Sobral>.circulo-filho-Casca.circulo-Sobral {
+  width: 30px;
+  height: 30px;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 0.1);
+  /* Cor de fundo branca com 10% de opacidade */
+  animation-delay: 3s;
+  pointer-events: none;
+}
+
+.pulsando {
+  animation: pulsar 1s infinite;
+}
+
+.visivel {
+  display: block !important;
+}
+
+.circulo-Aracati,
+.circulo-Cariri,
+.circulo-Cascavel,
+.circulo-Catarina,
+.circulo-Crateus,
+.circulo-Iguatu,
+.circulo-Pacajus,
+.circulo-Paraipaba,
+.circulo-Rede,
+.circulo-Redencao,
+.circulo-SantaQuiteria,
+.circulo-Sobral {
+  display: none;
+}
+
+@keyframes pulsar {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  50% {
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
 }
